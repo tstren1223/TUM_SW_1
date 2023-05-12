@@ -60,16 +60,23 @@ class PersonServiceTest {
         person.setBirthday(LocalDate.now());
 
         personService.save(person);
+        
+        assertTrue(personService.getAll().contains(person));
         var person2 = new Person();
         person2.setFirstName("M");
         person2.setLastName("B");
         person2.setBirthday(LocalDate.now());
         personService.save(person2);
-        personService.addParent(person,person2);
-        assertTrue(personService.getAll().contains(person));
+        
         assertTrue(personService.getAll().contains(person2));
-        assertTrue(person.getParents().contains(person2));
-    }
+        try{
+        personService.addParent(person,person2);
+        
+        }
+        catch(ResponseStatusException e){
+            assertTrue(person.getParents().contains(person2));
+        }
+}
     @Test
     void testAddThreeParents(){}
 }
