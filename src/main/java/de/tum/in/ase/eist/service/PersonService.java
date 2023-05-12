@@ -50,16 +50,12 @@ public class PersonService {
 
     public Person addChild(Person person, Person child) {
         // TODO: Implement
-        Set<Person> c_p=child.getParents();
         Set<Person> p=person.getChildren();
         if(c_p.size()==2)
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Over 2 parents.");
-        c_p.add(person);
-        child.setParents(c_p);
         p.add(child);
         person.setChildren(p);
         save(person);
-        save(child);
         return person;
     }
 
