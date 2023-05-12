@@ -74,4 +74,82 @@ class PersonIntegrationTest {
     }
 
     // TODO: Add more test cases here
+    @Test
+    void testAddParent() {
+        var person = new Person();
+        person.setFirstName("M");
+        person.setLastName("A");
+        person.setBirthday(LocalDate.now());
+
+        personService.save(person);
+
+        assertTrue(personService.getAll().contains(person));
+        var person2 = new Person();
+        person2.setFirstName("M");
+        person2.setLastName("B");
+        person2.setBirthday(LocalDate.now());
+        personService.save(person2);
+
+        assertTrue(personService.getAll().contains(person2));
+        String p_J = objectMapper.writeValueAsString(person2);
+        var response = this.mvc.perform(
+                        put("/persons/" + person.getId() + "/parents")
+                                        .content(p_J)
+                                        .contentType("application/json"))
+                        .andReturn().getResponse();
+
+        assertEquals(HttpStatus.OK.value(), response.getStatus());
+        personService.addParent(person,person2);
+        assertEquals(2, personRepository.findAll().size());
+    }
+    
+    @Test
+    void testAddThreeParents() {
+        var person = new Person();
+        person.setFirstName("M");
+        person.setLastName("A");
+        person.setBirthday(LocalDate.now());
+
+        personService.save(person);
+        var person2 = new Person();
+        person2.setFirstName("M");
+        person2.setLastName("B");
+        person2.setBirthday(LocalDate.now());
+        personService.save(person2);
+        var person3 = new Person();
+        person3.setFirstName("M");
+        person3.setLastName("C");
+        person3.setBirthday(LocalDate.now());
+
+        personService.save(person3);
+        var person4 = new Person();
+        person4.setFirstName("M");
+        person4.setLastName("D");
+        person4.setBirthday(LocalDate.now());
+        personService.save(person4);
+        String p_J1 = objectMapper.writeValueAsString(person2);
+        var response1 = this.mvc.perform(
+                        put("/persons/" + person.getId() + "/parents")
+                                        .content(p_J1)
+                                        .contentType("application/json"))
+                        .andReturn().getResponse();
+        assertEquals(HttpStatus.OK.value(),response1.getStatus());
+        String p_J2 = objectMapper.writeValueAsString(person3);
+                var response2 = this.mvc.perform(
+                                put("/persons/" + person.getId() + "/parents")
+                                                .content(p_J2)
+                                                .contentType("application/json"))
+                                .andReturn().getResponse();
+        assertEquals(HttpStatus.OK.value(),response2.getStatus());
+        String p_J3 = objectMapper.writeValueAsString(person4);
+                var response3 = this.mvc.perform(
+                                put("/persons/" + person.getId() + "/parents")
+                                                .content(p_J3)
+                                                .contentType("application/json"))
+                                .andReturn().getResponse();
+                assertEquals(HttpStatus.BAD_REQUEST.value(), response3.getStatus());
+                assertEquals(4, personRepository.findAll().size());
+        
+        
+    }
 }
