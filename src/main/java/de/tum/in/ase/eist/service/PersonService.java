@@ -39,7 +39,8 @@ public class PersonService {
 
     public Person addParent(Person person, Person parent) {
         // TODO: Implement
-        Set<Person> p=person.getParents();
+        Set<Person> p=new HashSet<>();
+        p=person.getParents();
         p.add(parent);
         if(p.size()>2)
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Over 2 parents.");
@@ -50,7 +51,8 @@ public class PersonService {
 
     public Person addChild(Person person, Person child) {
         // TODO: Implement
-        Set<Person> p=person.getChildren();
+        Set<Person> p=new HashSet<>();
+        p=person.getChildren();
         if(c_p.size()==2)
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Over 2 parents.");
         p.add(child);
@@ -63,7 +65,8 @@ public class PersonService {
         // TODO: Implement
         if(person.getParents.size()<=1)
          throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Parents less than 2");
-         Set<Person> p=person.getParents();
+        Set<Person> p=new HashSet<>();
+        p=person.getParents();
         p.remove(parent);
         person.setParents(p);
         save(person);
@@ -74,7 +77,8 @@ public class PersonService {
         // TODO: Implement
         if(child.getParents.size()<=1)
          throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Parents less than 2");
-         Set<Person> p=person.getChildren();
+         Set<Person> p=new HashSet<>();
+         p=person.getChildren();
         p.remove(child);
         person.setChildren(p);
         save(person);
