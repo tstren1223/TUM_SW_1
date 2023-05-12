@@ -68,7 +68,8 @@ class PersonServiceTest {
         personService.addParent(person,person2);
         assertTrue(personRepository.findAll().contains(person));
         assertTrue(personRepository.findAll().contains(person2));
-        assertTrue(person.Parents().contains(person2));
+        assertTrue(person.getParents().contains(person2));
     }
-    boolean testAddThreeParents(){}
+    @Test
+    void testAddThreeParents(){}
 }
