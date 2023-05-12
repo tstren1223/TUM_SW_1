@@ -66,8 +66,8 @@ class PersonServiceTest {
         person2.setBirthday(LocalDate.now());
         personService.save(person2);
         personService.addParent(person,person2);
-        assertTrue(personRepository.findAll().contains(person));
-        assertTrue(personRepository.findAll().contains(person2));
+        assertTrue(personService.getAll().contains(person));
+        assertTrue(personService.getAll().contains(person2));
         assertTrue(person.getParents().contains(person2));
     }
     @Test
