@@ -40,11 +40,10 @@ public class PersonService {
 
     public Person addParent(Person person, Person parent) {
         // TODO: Implement
-        Set<Person> p=new HashSet<>();
-        p=person.getParents();
-        if(p.size()>=2)
+        if(person.getParents().size()>=2)
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Over 2 parents.");
     
+        Set<Person> p=new HashSet<>(person.getParents());
         p.add(parent);
         person.setParents(p);
         return personRepository.save(person);
