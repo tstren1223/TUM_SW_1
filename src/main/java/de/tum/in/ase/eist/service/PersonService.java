@@ -67,7 +67,7 @@ public class PersonService {
         // TODO: Implement
         Set<Person> p=new HashSet<>();
         p=person.getParents();
-        if(person.getParents.size()<=1)
+        if(person.getParents().size()<=1)
          throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Parents less than 2");
         
         p.remove(parent);
