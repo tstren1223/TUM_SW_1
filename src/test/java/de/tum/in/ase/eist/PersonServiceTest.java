@@ -61,23 +61,42 @@ class PersonServiceTest {
 
         personService.save(person);
 
-        if(!personService.getAll().contains(person))
-            return false;
+        assertTrue(personService.getAll().contains(person));
         var person2 = new Person();
         person2.setFirstName("M");
         person2.setLastName("B");
         person2.setBirthday(LocalDate.now());
         personService.save(person2);
 
-        if(!personService.getAll().contains(person2))
-            return false;
-        personService.addParent(person, person2);
-        if(!person.getParents().contains(person2))
-            return false;
-        return true;
+        assertTrue(personService.getAll().contains(person2));
+        
+        assertEquals(2, personRepository.findAll().size());
     }
 
     @Test
     void testAddThreeParents() {
+        var person = new Person();
+        person.setFirstName("M");
+        person.setLastName("A");
+        person.setBirthday(LocalDate.now());
+
+        personService.save(person);
+        var person2 = new Person();
+        person2.setFirstName("M");
+        person2.setLastName("B");
+        person2.setBirthday(LocalDate.now());
+        personService.save(person2);
+        var person3 = new Person();
+        person3.setFirstName("M");
+        person3.setLastName("C");
+        person3.setBirthday(LocalDate.now());
+
+        personService.save(person3);
+        var person4 = new Person();
+        person4.setFirstName("M");
+        person4.setLastName("D");
+        person4.setBirthday(LocalDate.now());
+        personService.save(person4);
+        
     }
 }
