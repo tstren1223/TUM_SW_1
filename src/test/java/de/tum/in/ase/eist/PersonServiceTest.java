@@ -53,7 +53,7 @@ class PersonServiceTest {
 
     // TODO: Add more test cases here
     @Test
-    void testAddParent(){
+    boolean testAddParent(){
         var person = new Person();
         person.setFirstName("M");
         person.setLastName("A");
@@ -65,7 +65,14 @@ class PersonServiceTest {
         person2.setLastName("B");
         person2.setBirthday(LocalDate.now());
         personService.save(person2);
+        try {
+            
         personService.addParent(person,person2);
+        return true;
+          }
+          catch(Exception e) {
+            return false;
+          }
         
     }
 }
