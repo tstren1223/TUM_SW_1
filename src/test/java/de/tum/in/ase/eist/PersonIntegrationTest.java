@@ -75,7 +75,7 @@ class PersonIntegrationTest {
 
     // TODO: Add more test cases here
     @Test
-    void testAddParent() {
+    void testAddParent() throws Exception{
         var person = new Person();
         person.setFirstName("M");
         person.setLastName("A");
@@ -103,7 +103,7 @@ class PersonIntegrationTest {
     }
     
     @Test
-    void testAddThreeParents() {
+    void testAddThreeParents() throws Exception {
         var person = new Person();
         person.setFirstName("M");
         person.setLastName("A");
