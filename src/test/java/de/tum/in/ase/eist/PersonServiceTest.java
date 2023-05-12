@@ -69,7 +69,7 @@ class PersonServiceTest {
         personService.save(person2);
 
         assertTrue(personService.getAll().contains(person2));
-        
+        personService.addParent(person,person2);
         assertEquals(2, personRepository.findAll().size());
     }
 
