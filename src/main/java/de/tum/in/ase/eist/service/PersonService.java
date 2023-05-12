@@ -43,7 +43,7 @@ public class PersonService {
         Set<Person> p=new HashSet<>();
         p=person.getParents();
         p.add(parent);
-        if(p.size()>2)
+        if(p.size()>=2)
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Over 2 parents.");
         person.setParents(p);
         save(person);
