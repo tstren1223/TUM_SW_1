@@ -39,21 +39,49 @@ public class PersonService {
 
     public Person addParent(Person person, Person parent) {
         // TODO: Implement
-        return null;
+        Set<Person> p=person.getParents();
+        p.add(parent);
+        if(p.size()>2)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Over 2 parents.");
+        person.setParents(p);
+        save(person);
+        return person;
     }
 
     public Person addChild(Person person, Person child) {
         // TODO: Implement
-        return null;
+        Set<Person> c_p=child.getParents();
+        Set<Person> p=person.getChildren();
+        if(c_p.size()==2)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Over 2 parents.");
+        c_p.add(person);
+        child.setParents(c_p);
+        p.add(child);
+        person.setChildren(p);
+        save(person);
+        save(child);
+        return person;
     }
 
     public Person removeParent(Person person, Person parent) {
         // TODO: Implement
-        return null;
+        if(person.getParents.size()<=1)
+         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Parents less than 2");
+         Set<Person> p=person.getParents();
+        p.remove(parent);
+        person.setParents(p);
+        save(person);
+        return person;
     }
 
     public Person removeChild(Person person, Person child) {
         // TODO: Implement
-        return null;
+        if(child.getParents.size()<=1)
+         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Parents less than 2");
+         Set<Person> p=person.getChildren();
+        p.remove(child);
+        person.setChildren(p);
+        save(person);
+        return person;
     }
 }
