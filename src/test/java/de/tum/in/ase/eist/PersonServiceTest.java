@@ -97,6 +97,10 @@ class PersonServiceTest {
         person4.setLastName("D");
         person4.setBirthday(LocalDate.now());
         personService.save(person4);
-        
+        personService.addParent(person,person1);
+        personService.addParent(person,person2);
+        assertThrows(ResponseStatusException.class,()->{
+            personService.addParent(person,person3);
+        });
     }
 }
