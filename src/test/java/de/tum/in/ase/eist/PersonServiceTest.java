@@ -53,7 +53,7 @@ class PersonServiceTest {
 
     // TODO: Add more test cases here
     @Test
-    boolean testAddParent() {
+    void testAddParent() {
         var person = new Person();
         person.setFirstName("M");
         person.setLastName("A");
