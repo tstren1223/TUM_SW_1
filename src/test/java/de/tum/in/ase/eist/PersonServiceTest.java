@@ -86,7 +86,7 @@ class PersonServiceTest {
         personService.save(person);
         personService.save(person2);
         personService.save(person4);
-        personService.save(parent3);
+        personService.save(person3);
         personService.addParent(person,person2);
         personService.addParent(person,person3);
         assertThrows(ResponseStatusException.class,()->{
