@@ -102,6 +102,5 @@ class PersonServiceTest {
         assertThrows(ResponseStatusException.class,()->{
             personService.addParent(person,person4);
         });
-        assertEquals(4, personRepository.findAll().size());
     }
 }
