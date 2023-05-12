@@ -52,4 +52,20 @@ class PersonServiceTest {
     }
 
     // TODO: Add more test cases here
+    @Test
+    void testAddParent(){
+        var person = new Person();
+        person.setFirstName("M");
+        person.setLastName("A");
+        person.setBirthday(LocalDate.now());
+
+        personService.save(person);
+        var person2 = new Person();
+        person2.setFirstName("M");
+        person2.setLastName("B");
+        person2.setBirthday(LocalDate.now());
+        personService.save(person2);
+        personService.addParent(person,person2);
+        
+    }
 }
