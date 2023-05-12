@@ -76,17 +76,28 @@ class PersonServiceTest {
     @Test
     void testAddThreeParents() {
         var person = new Person();
-        var person2 = new Person();
-        var person3 = new Person();
-        var person4 = new Person();
+        person.setFirstName("M");
+        person.setLastName("A");
         person.setBirthday(LocalDate.now());
-        person2.setBirthday(LocalDate.now());
-        person3.setBirthday(LocalDate.now());
-        person4.setBirthday(LocalDate.now());
+
         personService.save(person);
+        var person2 = new Person();
+        person2.setFirstName("M");
+        person2.setLastName("B");
+        person2.setBirthday(LocalDate.now());
         personService.save(person2);
-        personService.save(person4);
+        var person3 = new Person();
+        person3.setFirstName("M");
+        person3.setLastName("C");
+        person3.setBirthday(LocalDate.now());
+
         personService.save(person3);
+        var person4 = new Person();
+        person4.setFirstName("M");
+        person4.setLastName("D");
+        person4.setBirthday(LocalDate.now());
+        personService.save(person4);
+        
         personService.addParent(person,person2);
         personService.addParent(person,person3);
         assertThrows(ResponseStatusException.class,()->{

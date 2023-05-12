@@ -47,8 +47,7 @@ public class PersonService {
     
         p.add(parent);
         person.setParents(p);
-        save(person);
-        return person;
+        return personRepository.save(person);
     }
 
     public Person addChild(Person person, Person child) {
