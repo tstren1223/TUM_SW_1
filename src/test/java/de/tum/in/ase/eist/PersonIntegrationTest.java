@@ -81,16 +81,16 @@ class PersonIntegrationTest {
         person.setLastName("A");
         person.setBirthday(LocalDate.now());
 
-        personService.save(person);
+        personRepository.save(person);
 
-        assertTrue(personService.getAll().contains(person));
+        assertTrue(personRepository.findAll().contains(person));
         var person2 = new Person();
         person2.setFirstName("M");
         person2.setLastName("B");
         person2.setBirthday(LocalDate.now());
-        personService.save(person2);
+        personRepository.save(person2);
 
-        assertTrue(personService.getAll().contains(person2));
+        assertTrue(personRepository.findAll().contains(person2));
         String p_J = objectMapper.writeValueAsString(person2);
         var response = this.mvc.perform(
                         put("/persons/" + person.getId() + "/parents")
@@ -99,7 +99,6 @@ class PersonIntegrationTest {
                         .andReturn().getResponse();
 
         assertEquals(HttpStatus.OK.value(), response.getStatus());
-        personService.addParent(person,person2);
         assertEquals(2, personRepository.findAll().size());
     }
     
@@ -110,23 +109,23 @@ class PersonIntegrationTest {
         person.setLastName("A");
         person.setBirthday(LocalDate.now());
 
-        personService.save(person);
+        personRepository.save(person);
         var person2 = new Person();
         person2.setFirstName("M");
         person2.setLastName("B");
         person2.setBirthday(LocalDate.now());
-        personService.save(person2);
+        personRepository.save(person2);
         var person3 = new Person();
         person3.setFirstName("M");
         person3.setLastName("C");
         person3.setBirthday(LocalDate.now());
 
-        personService.save(person3);
+        personRepository.save(person3);
         var person4 = new Person();
         person4.setFirstName("M");
         person4.setLastName("D");
         person4.setBirthday(LocalDate.now());
-        personService.save(person4);
+        personRepository.save(person4);
         String p_J1 = objectMapper.writeValueAsString(person2);
         var response1 = this.mvc.perform(
                         put("/persons/" + person.getId() + "/parents")
