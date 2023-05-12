@@ -53,7 +53,7 @@ class PersonServiceTest {
 
     // TODO: Add more test cases here
     @Test
-    boolean testAddParent(){
+    void testAddParent(){
         var person = new Person();
         person.setFirstName("M");
         person.setLastName("A");
@@ -65,14 +65,10 @@ class PersonServiceTest {
         person2.setLastName("B");
         person2.setBirthday(LocalDate.now());
         personService.save(person2);
-        try {
-            
         personService.addParent(person,person2);
-        return true;
-          }
-          catch(ResponseStatusException e) {
-            return false;
-          }
-        
+        assertTrue(personRepository.findAll().contains(person));
+        assertTrue(personRepository.findAll().contains(person2));
+        assertTrue(person.Parents().contains(person2));
     }
+    boolean testAddThreeParents(){}
 }
