@@ -11,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
 import java.time.LocalDate;
-
+import org.springframework.web.server.ResponseStatusException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -70,7 +70,7 @@ class PersonServiceTest {
         personService.addParent(person,person2);
         return true;
           }
-          catch(Exception e) {
+          catch(ResponseStatusException e) {
             return false;
           }
         
