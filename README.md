@@ -25,6 +25,7 @@ Web Layer: This layer contains PersonResource which provides HTTP(-REST) endpoin
 Application Layer: This layer contains PersonService which provides business logic to PersonResource.
 Persistence Layer: This layer contains PersonRepository which provides functionality to perform database actions regarding entities of type Person. This layer uses functionality of the connected Postgres database.
 Subsystem Decomposition
+![image](https://github.com/tstren1223/TUM_SW_1/assets/64294878/214a9986-9d09-41be-a1b0-6219c28ae4b2)
 
 Part 1: Get your personal Ngrok auth token
 Perform the following steps in order to give the ngrok container access to the authentication token:
