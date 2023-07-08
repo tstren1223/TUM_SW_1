@@ -9,6 +9,8 @@ Please Note:
 If you don't use docker desktop, you have to install Docker Compose seperately.
 
 The pipeline process
+![image](https://github.com/tstren1223/TUM_SW_1/assets/64294878/a9dfb132-c2e4-4342-8f55-bcbaa663b14b)
+
 The following model describes the pipeline on how your Java source code files will be processed to deploy your application to Ngrok. The interesting thing about this deployment is, that it's completely local. Deployment Overview.png
 
 Java compiles the source code files (*.java) to binary files (*.class) to be executable on your local machine. As a side note, Java compiles your source code files every time you execute Java code locally.
